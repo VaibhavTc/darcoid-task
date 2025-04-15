@@ -54,9 +54,9 @@ export function BudgetProgress({ transactions, categories }: BudgetProgressProps
               style={{
                 backgroundColor: `${category.color}33`,
               }}
-              indicatorStyle={{
-                backgroundColor: isOverBudget ? 'hsl(var(--destructive))' : category.color,
-              }}
+            // indicatorStyle={{
+            //   backgroundColor: isOverBudget ? 'hsl(var(--destructive))' : category.color,
+            // }}
             />
             <div className="flex justify-between text-sm">
               <span className={isOverBudget ? 'text-destructive font-medium' : 'text-muted-foreground'}>
