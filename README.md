@@ -8,7 +8,7 @@ A full-stack web application to manage personal finances, track expenses by cate
 - 🎯 Categorize expenses with budgets and color labels
 - 📊 Visual progress bars to track budget consumption
 - 🔥 Dashboard summary for total expenses, top spending category, and over-budget alerts
-- 🧠 Built with Next.js App Router, MongoDB, Mongoose, and TailwindCSS
+- 🧠 Built with Next.js App Router, MongoDB, Mongoose, and Shadcn
 
 ## 🚀 Tech Stack
 
@@ -23,3 +23,25 @@ A full-stack web application to manage personal finances, track expenses by cate
 ```bash
 git clone https://github.com/VaibhavTc/darcoid-task.git
 cd darcoid-task
+```
+### 2. Install Dependencies
+```bash
+npm install
+# or
+yarn install
+```
+### 3. Set Up Environment Variables
+Create a .env file in the root directory:
+```bash
+MONGODB_URI=your_mongodb_connection_string
+```
+### 4. Run the Development Server
+Create a .env file in the root directory:
+```bash
+npm run dev
+# or
+yarn dev
+```
+Visit http://localhost:3000 in your browser.
+## 📜 License
+This project is licensed under the MIT License.
