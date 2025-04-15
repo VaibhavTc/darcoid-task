@@ -35,10 +35,8 @@ export function TransactionList({
   onEdit,
   categories,
 }: TransactionListProps) {
-  const [editingTransaction, setEditingTransaction] = useState<Transaction | null>(
-    null
-  );
-
+  const [editingTransaction, setEditingTransaction] =
+    useState<Transaction | null>(null);
 
   const handleEdit = (transaction: Transaction) => {
     onEdit(transaction);
@@ -46,12 +44,14 @@ export function TransactionList({
   };
 
   const getCategoryName = (categoryId: string) => {
-    console.log("idsasss", categoryId)
+    console.log("idsasss", categoryId);
     return categories.find((c) => c.id === categoryId)?.name || "Unknown";
   };
 
   const getCategoryColor = (categoryId: string) => {
-    return categories.find((c) => c.id === categoryId)?.color || "hsl(var(--muted))";
+    return (
+      categories.find((c) => c.id === categoryId)?.color || "hsl(var(--muted))"
+    );
   };
 
   return (
@@ -70,21 +70,31 @@ export function TransactionList({
           <TableBody>
             {transactions.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={5} className="text-center text-muted-foreground">
+                <TableCell
+                  colSpan={5}
+                  className="text-center text-muted-foreground"
+                >
                   No transactions yet
                 </TableCell>
               </TableRow>
             ) : (
               transactions
-                .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+                .sort(
+                  (a, b) =>
+                    new Date(b.date).getTime() - new Date(a.date).getTime(),
+                )
                 .map((transaction) => (
                   <TableRow key={transaction.id}>
-                    <TableCell>{format(new Date(transaction.date), "MMM d, yyyy")}</TableCell>
+                    <TableCell>
+                      {format(new Date(transaction.date), "MMM d, yyyy")}
+                    </TableCell>
                     <TableCell>{transaction.description}</TableCell>
                     <TableCell>
                       <Badge
                         style={{
-                          backgroundColor: getCategoryColor(transaction.categoryId),
+                          backgroundColor: getCategoryColor(
+                            transaction.categoryId,
+                          ),
                           color: "white",
                         }}
                       >

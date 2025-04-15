@@ -1,6 +1,6 @@
-import { NextResponse } from 'next/server';
-import connectDB from '@/lib/db';
-import { Category } from '@/lib/models/category';
+import { NextResponse } from "next/server";
+import connectDB from "@/lib/db";
+import { Category } from "@/lib/models/category";
 
 const initialCategories = [
   { name: "Groceries", color: "hsl(12, 76%, 61%)", budget: 500 },
@@ -17,11 +17,14 @@ export async function GET() {
     if (existingCategories === 0) {
       await Category.insertMany(initialCategories);
       console.log("Categories seeded successfully");
-      return NextResponse.json({ message: 'Categories seeded successfully' });
+      return NextResponse.json({ message: "Categories seeded successfully" });
     }
-    
-    return NextResponse.json({ message: 'Categories already exist' });
+
+    return NextResponse.json({ message: "Categories already exist" });
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to seed categories' }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to seed categories" },
+      { status: 500 },
+    );
   }
 }

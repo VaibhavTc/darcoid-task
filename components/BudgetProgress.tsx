@@ -9,7 +9,10 @@ interface BudgetProgressProps {
   categories: Category[];
 }
 
-export function BudgetProgress({ transactions, categories }: BudgetProgressProps) {
+export function BudgetProgress({
+  transactions,
+  categories,
+}: BudgetProgressProps) {
   console.log("transactions", transactions);
   console.log("categories", categories);
   const categorySummaries = useMemo(() => {
@@ -54,19 +57,30 @@ export function BudgetProgress({ transactions, categories }: BudgetProgressProps
               style={{
                 backgroundColor: `${category.color}33`,
               }}
-            // indicatorStyle={{
-            //   backgroundColor: isOverBudget ? 'hsl(var(--destructive))' : category.color,
-            // }}
+              // indicatorStyle={{
+              //   backgroundColor: isOverBudget ? 'hsl(var(--destructive))' : category.color,
+              // }}
             />
             <div className="flex justify-between text-sm">
-              <span className={isOverBudget ? 'text-destructive font-medium' : 'text-muted-foreground'}>
+              <span
+                className={
+                  isOverBudget
+                    ? "text-destructive font-medium"
+                    : "text-muted-foreground"
+                }
+              >
                 {summary.percentage.toFixed(0)}% spent
               </span>
-              <span className={isOverBudget ? 'text-destructive font-medium' : 'text-muted-foreground'}>
+              <span
+                className={
+                  isOverBudget
+                    ? "text-destructive font-medium"
+                    : "text-muted-foreground"
+                }
+              >
                 {isOverBudget
                   ? `$${(summary.totalSpent - summary.budget).toFixed(2)} over budget`
-                  : `$${(summary.budget - summary.totalSpent).toFixed(2)} remaining`
-                }
+                  : `$${(summary.budget - summary.totalSpent).toFixed(2)} remaining`}
               </span>
             </div>
           </div>

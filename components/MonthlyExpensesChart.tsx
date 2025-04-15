@@ -17,7 +17,9 @@ interface MonthlyExpensesChartProps {
   transactions: Transaction[];
 }
 
-export function MonthlyExpensesChart({ transactions }: MonthlyExpensesChartProps) {
+export function MonthlyExpensesChart({
+  transactions,
+}: MonthlyExpensesChartProps) {
   const monthlyData = useMemo(() => {
     const data: { [key: string]: number } = {};
 
@@ -38,10 +40,12 @@ export function MonthlyExpensesChart({ transactions }: MonthlyExpensesChartProps
       .sort((a, b) => {
         const [monthA, yearA] = a.month.split(" ");
         const [monthB, yearB] = b.month.split(" ");
-        return new Date(`${monthA} 1, ${yearA}`).getTime() - new Date(`${monthB} 1, ${yearB}`).getTime();
+        return (
+          new Date(`${monthA} 1, ${yearA}`).getTime() -
+          new Date(`${monthB} 1, ${yearB}`).getTime()
+        );
       });
   }, [transactions]);
-
 
   if (transactions.length === 0) {
     return (

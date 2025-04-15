@@ -20,28 +20,40 @@ A full-stack web application to manage personal finances, track expenses by cate
 ## 🛠️ Getting Started
 
 ### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/VaibhavTc/yardstick-task.git
 cd yardstick-task
 ```
+
 ### 2. Install Dependencies
+
 ```bash
 npm install
 # or
 yarn install
 ```
+
 ### 3. Set Up Environment Variables
+
 Create a .env file in the root directory:
+
 ```bash
 MONGODB_URI=your_mongodb_connection_string
 ```
+
 ### 4. Run the Development Server
+
 Create a .env file in the root directory:
+
 ```bash
 npm run dev
 # or
 yarn dev
 ```
+
 Visit http://localhost:3000 in your browser.
+
 ## 📜 License
+
 This project is licensed under the MIT License.

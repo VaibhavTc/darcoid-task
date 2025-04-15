@@ -10,7 +10,10 @@ interface DashboardSummaryProps {
   categories: Category[];
 }
 
-export function DashboardSummary({ transactions, categories }: DashboardSummaryProps) {
+export function DashboardSummary({
+  transactions,
+  categories,
+}: DashboardSummaryProps) {
   const summary = useMemo(() => {
     if (!categories.length || !transactions.length) {
       return {
@@ -29,14 +32,16 @@ export function DashboardSummary({ transactions, categories }: DashboardSummaryP
         .reduce((sum, t) => sum + t.amount, 0),
     }));
 
-    const spentCategories = categorySpending.filter(cat => cat.spent > 0);
-    const topCategory = spentCategories.length > 0
-      ? spentCategories.reduce((max, cat) => (cat.spent > max.spent ? cat : max))
-      : null;
-
+    const spentCategories = categorySpending.filter((cat) => cat.spent > 0);
+    const topCategory =
+      spentCategories.length > 0
+        ? spentCategories.reduce((max, cat) =>
+            cat.spent > max.spent ? cat : max,
+          )
+        : null;
 
     const overBudgetCategories = categorySpending.filter(
-      (cat) => cat.spent > cat.budget
+      (cat) => cat.spent > cat.budget,
     );
 
     return { total, topCategory, overBudgetCategories };
@@ -67,7 +72,6 @@ export function DashboardSummary({ transactions, categories }: DashboardSummaryP
         ) : (
           <p className="text-sm text-muted-foreground">No spending recorded</p>
         )}
-
       </Card>
 
       <Card className="p-6 space-y-2">
@@ -76,7 +80,9 @@ export function DashboardSummary({ transactions, categories }: DashboardSummaryP
           <h3 className="text-sm font-medium">Over Budget</h3>
         </div>
         {summary.overBudgetCategories.length === 0 ? (
-          <p className="text-sm text-muted-foreground">All categories within budget</p>
+          <p className="text-sm text-muted-foreground">
+            All categories within budget
+          </p>
         ) : (
           <div className="space-y-1">
             {summary.overBudgetCategories.map((cat) => (

@@ -15,7 +15,7 @@ export function Navbar() {
             <WalletCards className="h-6 w-6" />
             <span className="text-lg font-semibold">Finance Tracker</span>
           </div>
-          
+
           <Button
             variant="ghost"
             size="icon"

@@ -38,23 +38,27 @@ interface TransactionFormProps {
   categories: Category[];
 }
 
-export function TransactionForm({ onSubmit, initialData, categories }: TransactionFormProps) {
+export function TransactionForm({
+  onSubmit,
+  initialData,
+  categories,
+}: TransactionFormProps) {
   console.log("categories", categories);
   const form = useForm<TransactionFormData>({
     resolver: zodResolver(transactionSchema),
     defaultValues: initialData
       ? {
-        amount: initialData.amount,
-        description: initialData.description,
-        date: initialData.date.toISOString().split("T")[0],
-        categoryId: initialData.categoryId,
-      }
+          amount: initialData.amount,
+          description: initialData.description,
+          date: initialData.date.toISOString().split("T")[0],
+          categoryId: initialData.categoryId,
+        }
       : {
-        amount: 0,
-        description: "",
-        date: new Date().toISOString().split("T")[0],
-        categoryId: "",
-      },
+          amount: 0,
+          description: "",
+          date: new Date().toISOString().split("T")[0],
+          categoryId: "",
+        },
   });
 
   const handleSubmit = (data: TransactionFormData) => {

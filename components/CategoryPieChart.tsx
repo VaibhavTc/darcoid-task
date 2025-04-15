@@ -1,7 +1,14 @@
 "use client";
 
 import { useMemo } from "react";
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  Tooltip,
+  Legend,
+} from "recharts";
 import { Transaction, Category } from "@/lib/types";
 
 interface CategoryPieChartProps {
@@ -9,19 +16,25 @@ interface CategoryPieChartProps {
   categories: Category[];
 }
 
-export function CategoryPieChart({ transactions, categories }: CategoryPieChartProps) {
+export function CategoryPieChart({
+  transactions,
+  categories,
+}: CategoryPieChartProps) {
   const categoryData = useMemo(() => {
     const data: { [key: string]: number } = {};
-    
+
     transactions.forEach((transaction) => {
-      data[transaction.categoryId] = (data[transaction.categoryId] || 0) + transaction.amount;
+      data[transaction.categoryId] =
+        (data[transaction.categoryId] || 0) + transaction.amount;
     });
 
-    return categories.map((category) => ({
-      name: category.name,
-      value: data[category.id] || 0,
-      color: category.color,
-    })).filter(item => item.value > 0);
+    return categories
+      .map((category) => ({
+        name: category.name,
+        value: data[category.id] || 0,
+        color: category.color,
+      }))
+      .filter((item) => item.value > 0);
   }, [transactions, categories]);
 
   if (transactions.length === 0) {
@@ -43,7 +56,7 @@ export function CategoryPieChart({ transactions, categories }: CategoryPieChartP
             cx="50%"
             cy="50%"
             outerRadius={100}
-            label={({ name, percent }) => 
+            label={({ name, percent }) =>
               `${name} ${(percent * 100).toFixed(0)}%`
             }
           >

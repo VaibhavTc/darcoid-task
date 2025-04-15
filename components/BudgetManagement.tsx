@@ -26,14 +26,18 @@ interface BudgetManagementProps {
   onAddCategory: (category: Omit<Category, "id">) => void;
 }
 
-export function BudgetManagement({ categories, onUpdateBudget, onAddCategory }: BudgetManagementProps) {
+export function BudgetManagement({
+  categories,
+  onUpdateBudget,
+  onAddCategory,
+}: BudgetManagementProps) {
   const [editingCategory, setEditingCategory] = useState<string | null>(null);
   const [newBudget, setNewBudget] = useState<string>("");
   const [isAddingCategory, setIsAddingCategory] = useState(false);
   const [newCategory, setNewCategory] = useState({
     name: "",
     budget: "",
-    color: "#000000"
+    color: "#000000",
   });
 
   const handleEdit = (category: Category) => {
@@ -53,11 +57,11 @@ export function BudgetManagement({ categories, onUpdateBudget, onAddCategory }: 
   const handleAddCategory = () => {
     const budget = parseFloat(newCategory.budget);
     if (newCategory.name && !isNaN(budget) && budget > 0) {
-      console.log('okass');
+      console.log("okass");
       onAddCategory({
         name: newCategory.name,
         budget: budget,
-        color: newCategory.color
+        color: newCategory.color,
       });
       setIsAddingCategory(false);
       setNewCategory({ name: "", budget: "", color: "#000000" });
@@ -116,10 +120,7 @@ export function BudgetManagement({ categories, onUpdateBudget, onAddCategory }: 
                       >
                         Cancel
                       </Button>
-                      <Button
-                        size="sm"
-                        onClick={() => handleSave(category.id)}
-                      >
+                      <Button size="sm" onClick={() => handleSave(category.id)}>
                         Save
                       </Button>
                     </div>
@@ -149,7 +150,9 @@ export function BudgetManagement({ categories, onUpdateBudget, onAddCategory }: 
               <label className="text-sm font-medium">Category Name</label>
               <Input
                 value={newCategory.name}
-                onChange={(e) => setNewCategory({ ...newCategory, name: e.target.value })}
+                onChange={(e) =>
+                  setNewCategory({ ...newCategory, name: e.target.value })
+                }
                 placeholder="Enter category name"
               />
             </div>
@@ -158,7 +161,9 @@ export function BudgetManagement({ categories, onUpdateBudget, onAddCategory }: 
               <Input
                 type="number"
                 value={newCategory.budget}
-                onChange={(e) => setNewCategory({ ...newCategory, budget: e.target.value })}
+                onChange={(e) =>
+                  setNewCategory({ ...newCategory, budget: e.target.value })
+                }
                 placeholder="Enter budget amount"
                 min="0"
                 step="10"
@@ -169,12 +174,17 @@ export function BudgetManagement({ categories, onUpdateBudget, onAddCategory }: 
               <Input
                 type="color"
                 value={newCategory.color}
-                onChange={(e) => setNewCategory({ ...newCategory, color: e.target.value })}
+                onChange={(e) =>
+                  setNewCategory({ ...newCategory, color: e.target.value })
+                }
               />
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setIsAddingCategory(false)}>
+            <Button
+              variant="outline"
+              onClick={() => setIsAddingCategory(false)}
+            >
               Cancel
             </Button>
             <Button onClick={handleAddCategory}>Add Category</Button>
