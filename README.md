@@ -21,8 +21,8 @@ A full-stack web application to manage personal finances, track expenses by cate
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/VaibhavTc/darcoid-task.git
-cd darcoid-task
+git clone https://github.com/VaibhavTc/yardstick-task.git
+cd yardstick-task
 ```
 ### 2. Install Dependencies
 ```bash
