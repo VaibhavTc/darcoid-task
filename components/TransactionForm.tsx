@@ -48,17 +48,17 @@ export function TransactionForm({
     resolver: zodResolver(transactionSchema),
     defaultValues: initialData
       ? {
-          amount: initialData.amount,
-          description: initialData.description,
-          date: initialData.date.toISOString().split("T")[0],
-          categoryId: initialData.categoryId,
-        }
+        amount: initialData.amount,
+        description: initialData.description,
+        date: initialData.date.toISOString().split("T")[0],
+        categoryId: initialData.categoryId,
+      }
       : {
-          amount: 0,
-          description: "",
-          date: new Date().toISOString().split("T")[0],
-          categoryId: "",
-        },
+        amount: 0,
+        description: "",
+        date: new Date().toISOString().split("T")[0],
+        categoryId: "",
+      },
   });
 
   const handleSubmit = (data: TransactionFormData) => {
@@ -69,8 +69,15 @@ export function TransactionForm({
       date: new Date(data.date),
       categoryId: data.categoryId,
     });
-    form.reset();
+
+    form.reset({
+      amount: 0,
+      description: "",
+      date: new Date().toISOString().split("T")[0],
+      categoryId: "",
+    });
   };
+
 
   return (
     <Form {...form}>
@@ -129,7 +136,7 @@ export function TransactionForm({
           render={({ field }) => (
             <FormItem>
               <FormLabel>Category</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select value={field.value} onValueChange={field.onChange}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Select a category" />
