@@ -33,7 +33,7 @@ export function BudgetProgress({
   }, [transactions, categories]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-h-[25rem] overflow-y-auto scrollbar-hide">
       {categorySummaries.map((summary) => {
         const category = categories.find((c) => c.id === summary.categoryId)!;
         const isOverBudget = summary.percentage > 100;
@@ -51,16 +51,15 @@ export function BudgetProgress({
                 ${summary.totalSpent.toFixed(2)} / ${summary.budget.toFixed(2)}
               </span>
             </div>
-            <Progress
-              value={Math.min(summary.percentage, 100)}
-              className="h-2"
-              style={{
-                backgroundColor: `${category.color}33`,
-              }}
-              // indicatorStyle={{
-              //   backgroundColor: isOverBudget ? 'hsl(var(--destructive))' : category.color,
-              // }}
-            />
+            <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
+              <div
+                className={`h-full transition-all duration-300`}
+                style={{
+                  width: `${Math.min(summary.percentage, 100)}%`,
+                  backgroundColor: isOverBudget ? "#ef4444" : category.color,
+                }}
+              />
+            </div>
             <div className="flex justify-between text-sm">
               <span
                 className={
