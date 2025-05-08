@@ -93,7 +93,11 @@ export default function Home() {
     });
     console.log("response", response);
     const category = await response.json();
-    setCategories([...categories, category]);
+    const normalizedCategory = {
+      ...category,
+      id: category._id,
+    };
+    setCategories([...categories, normalizedCategory]);
   };
 
   return (
